@@ -6,13 +6,15 @@ group = "ideskov"
 version = "1.0-SNAPSHOT"
 
 repositories {
-    maven("https://ci-repo.aexp.com/java-proxy/content/groups/prod")
+    mavenCentral()
 }
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    implementation("com.github.kittinunf.fuel:fuel:2.2.1")
-    implementation("com.github.kittinunf.fuel:fuel-moshi:2.2.1")
+
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.6.0")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.6.0")
 }
 
 tasks {
@@ -21,5 +23,8 @@ tasks {
     }
     compileTestKotlin {
         kotlinOptions.jvmTarget = "11"
+    }
+    test {
+        useJUnitPlatform()
     }
 }
